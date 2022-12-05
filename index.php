@@ -1,5 +1,6 @@
 <?php
 
+
 // on definie le chemin vers l'index
 
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));

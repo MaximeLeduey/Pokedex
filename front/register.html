@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"><script defer src="/front/assets/js/script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script defer src="/front/assets/js/register.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -16,22 +17,23 @@
     <form class="register" id="formRegister">
         <div class="mb-3 mt-3">
             <label for="username" class="form-label">Nom d'utilisateur :</label>
-            <input type="text" class="form-control" id="username" placeholder="Nom d'utilisateur" name="username" value="Maxime">
+            <input type="text" class="form-control" id="username" placeholder="Nom d'utilisateur" name="username">
         </div>
         <div class="mb-3 mt-3">
             <label for="email" class="form-label">Email :</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="test@test.com">
+            <input type="email" class="form-control" id="email" placeholder="Email" name="email">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Mot de passe :</label>
             <input type="password" class="form-control" id="pwd" placeholder="Mot de passe" name="password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <button type="submit" class="btn btn-primary">Valider l'inscription</button>
+        </form>
 
-      <div id="outputMessage" class="alert visually-hidden" role="alert">
-        Message
-      </div>
+    <div id="outputMessage" class="alert visually-hidden" role="alert">
+    Message
+    </div>
+
       
 </main>
 <!-- JavaScript Bundle with Popper -->

@@ -1,4 +1,3 @@
-// requete pour l'inscription
 
 const register = document.querySelector('.register');
 
@@ -24,15 +23,12 @@ const register = document.querySelector('.register');
         console.log(response);
         response = JSON.parse(response);
         if(response.success === 1) {
-           // alert(response.output)
-            console.log("1");
             document.getElementById("formRegister").classList.add("visually-hidden");
             document.getElementById("outputMessage").innerHTML = `Bravo ${response.username}, vous êtes désormais enregistré avec votre adresse ${response.email}`;
             document.getElementById("outputMessage").classList.add("alert-success");
             document.getElementById("outputMessage").classList.remove("visually-hidden");
         }
         else {
-            console.log("2");
             document.getElementById("outputMessage").innerHTML = response.message;
             document.getElementById("outputMessage").classList.add("alert-danger");
             document.getElementById("outputMessage").classList.remove("visually-hidden");
@@ -42,4 +38,8 @@ const register = document.querySelector('.register');
     return false;
 
 })
+
+
+
+
 

@@ -25,16 +25,17 @@ class User extends Controller {
      * @return bool
      */
 
-    public function username_exists() : bool {
+    public function username_exists() {
         $this->loadModel('Login');
         $usernames = $this->Login->get_usernames();
         foreach($usernames as $username) {
-            if($username['username'] == $_POST['username']) {
+            if($username['username'] === $_POST['username']) {
                 return true;
             }
         }
 
     }
+
 
     /** fonction qui check le nom d'utilisateur
      * @return bool
@@ -79,6 +80,14 @@ class User extends Controller {
         }
     }
 
+    /** fonction qui crée un mot de passe hashé
+     * 
+     */
+
+    public function create_hashed_password() {
+        $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    }
+
 
     /** fonction qui check l'inscription
      * 
@@ -94,7 +103,10 @@ class User extends Controller {
         if($this->check_username()) {
             if($this->check_email()) {
                 if($this->check_password()) {
-                    if($this->username_exists()) {
+                    if(!$this->username_exists()) {
+                        $this->create_hashed_password();
+                        $this->loadModel('Register');
+                        $this->Register->create_user();
                         $data['message'] = "Inscription réussie";
                         $data['success'] = 1;
                     }
@@ -115,6 +127,46 @@ class User extends Controller {
         }
         echo json_encode($data);
 
+    }
+
+    /** fonction qui vérifie si le mot de passe est correct pour un utilisateur donné
+     * @return bool
+     */
+
+    public function verify_password() : bool {
+        $this->loadModel('Login');
+        $db_password = $this->Login->get_password_by_username()['password'];
+        if(password_verify($_POST['password'], $db_password)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+
+    /** fonction qui check la connexion
+     * 
+     */
+
+    public function check_login() {
+        $data = [];
+        $data['message'] = "";
+        $data['success'] = 0;
+        if($this->username_exists()) {
+            if($this->verify_password()) {
+                $data['success'] = 1;
+                $data['username'] = $_POST['username'];
+            }
+            else {
+                $data['message'] = "Mot de passe incorrect";
+            }
+        }
+        else {
+            $data['message'] = "L'utilisateur n'existe pas";
+        }
+        echo json_encode($data);
     }
 
 
