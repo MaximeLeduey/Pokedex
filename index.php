@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <title>Document</title>
-</head>
-<body>
-
 <?php
 
 // on definie le chemin vers l'index
@@ -16,8 +5,8 @@
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']));
 
 
-require_once ROOT.'app/'.'Controller.php';
-require_once ROOT.'app/'.'Model.php';
+require_once ROOT.'server/app/'.'Controller.php';
+require_once ROOT.'server/app/'.'Model.php';
 
 // on sépare les paramètres de l'url
 
@@ -33,7 +22,7 @@ $controller = ucfirst($params[0]);
 $action = isset($params[1]) ? $params['1'] : 'login';
 
 
-require_once(ROOT.'controllers/'.$controller.'.php');
+require_once(ROOT.'server/controllers/'.$controller.'.php');
 
 $controller = new $controller();
 
@@ -46,6 +35,3 @@ else {
 }
 
 ?>
-
-</body>
-</html>
