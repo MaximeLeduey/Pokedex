@@ -28,13 +28,12 @@ class User extends Controller {
     public function username_exists() : bool {
         $this->loadModel('Login');
         $usernames = $this->Login->get_usernames();
-        // var_dump($usernames);
         foreach($usernames as $username) {
-            // var_dump($username['username']);
             if($username['username'] == $_POST['username']) {
                 return true;
             }
         }
+
     }
 
     /** fonction qui check le nom d'utilisateur
@@ -86,18 +85,7 @@ class User extends Controller {
      */
 
     public function check_register() {
-        // $message = [];
-        // if(isset($_POST)) {
-        //     $message['code'] = 201;
-        //     $message['output'] = "envoie reussi";
-        //     $message['data'] = $_POST;
-        // }
-        // else {
-        //     $message['code'] = 400;
-        //     $message['output'] = "envoie raté";
-        //     $message['data'] = [];
-        // }
-        // echo json_encode($message);
+      
         $data = [];
         $data['message'] = "";
         $data['success'] = 0;
@@ -106,11 +94,13 @@ class User extends Controller {
         if($this->check_username()) {
             if($this->check_email()) {
                 if($this->check_password()) {
-                    // if($this->username_exists()) {
-                    $data['message'] = "Inscription réussie";
-                    $data['success'] = 1;
-                    // }
-                    // $data['message'] = "Ce nom d'utilisateur est déjà utilisé";
+                    if($this->username_exists()) {
+                        $data['message'] = "Inscription réussie";
+                        $data['success'] = 1;
+                    }
+                    else {
+                        $data['message'] = "Ce nom d'utilisateur est déjà utilisé";
+                    }
                 }
                 else {
                     $data['message'] = "Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre et un caractère spécial";
