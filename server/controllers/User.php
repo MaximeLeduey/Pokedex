@@ -20,6 +20,15 @@ class User extends Controller {
         $this->render('register');
     }
 
+    /** fonction qui redirige vers la page de recherche
+     * 
+     */
+
+    public function search() {
+        $this->loadModel('Search');
+        $this->render('search');
+    }
+
 
     /** fonction qui verifie si le nom d'utilisateur existe deja
      * @return bool
