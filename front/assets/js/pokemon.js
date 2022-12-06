@@ -21,6 +21,8 @@ fetchPokemons(100);
 
 
 async function createPokemon(name) {
+
+    pokemonsContainer.innerHTML = "";
     
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`);
 
@@ -38,7 +40,21 @@ async function createPokemon(name) {
 
     imageContainer.classList.add('img-container');
 
-    imageContainer.src = image;
+    const img = document.createElement('img');
+
+    img.src = image;
+
+    imageContainer.appendChild(img);
+
+    const nameParagraph = document.createElement('p');
+
+    nameParagraph.textContent = currentName;
+
+    card.appendChild(imageContainer);
+
+    card.appendChild(nameParagraph);
+
+    pokemonsContainer.appendChild(card);
 
 }
 
