@@ -34,11 +34,21 @@ async function createPokemon(name) {
 
     const card = document.createElement('div');
 
-    card.classList.add('pokemon-card');
+    card.classList.add("pokemon-card");
 
     const imageContainer = document.createElement('div');
 
     imageContainer.classList.add('img-container');
+
+    const likeContainer = document.createElement('div');
+
+    likeContainer.classList.add('like-container');
+
+    const like = document.createElement('img');
+
+    likeContainer.appendChild(like);
+
+    like.src = "/front/assets/img/like.svg";
 
     const img = document.createElement('img');
 
@@ -49,6 +59,10 @@ async function createPokemon(name) {
     const nameParagraph = document.createElement('p');
 
     nameParagraph.textContent = currentName;
+
+    nameParagraph.classList.add('text-center');
+
+    card.appendChild(likeContainer);
 
     card.appendChild(imageContainer);
 

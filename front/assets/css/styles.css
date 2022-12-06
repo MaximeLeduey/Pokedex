@@ -1,0 +1,67 @@
+/* ----------------------------------------------------------------------------------
+styles du header
+---------------------------------------------------------------------------------- */
+
+
+.nav-link {
+    color: white;
+}
+
+header {
+    height: 100px;
+}
+
+
+
+
+
+/* ----------------------------------------------------------------------------------
+styles du pokedex
+---------------------------------------------------------------------------------- */
+
+
+.pokemon-card {
+    width: 200px;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    margin: 0 auto;
+}
+
+.like-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.like-container img {
+    height: 30px;
+    width: 30px;
+}
+
+
+
+
+/* ----------------------------------------------------------------------------------
+styles du login et du register
+---------------------------------------------------------------------------------- */
+
+
+.login, .register, .search {
+    width: 400px;
+}
+
+.login-main {
+    gap:100px;
+}
+
+.login *, .register * {
+    width: 100%;
+}
+
+
