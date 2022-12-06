@@ -178,5 +178,28 @@ class User extends Controller {
         echo json_encode($data);
     }
 
+    /** fonction qui regarde si l'utilisateur est connecté
+     * 
+     */
+
+    public function is_logged() {
+        if(isset($_SESSION['connected'])) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /** fonction qui nous deconnecte
+     * 
+     */
+
+    public function logout() {
+        unset($_SESSION['connected']);
+        session_destroy();
+        header('Location:/user');
+    }
+
 
 }
