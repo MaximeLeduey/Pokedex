@@ -1,3 +1,23 @@
+// redirection
+
+
+async function login_controller() {
+    await fetch('/user/is_logged')
+    .then((result => {
+        return result.text();
+    }))
+    .then((response => {
+        response = JSON.parse(response);
+        if(response.connected == 1) {
+            document.location.href = "http://pokedex.test/user/search";
+        }
+    }))
+}
+
+login_controller();
+
+
+
 
 const register = document.querySelector('.register');
 
@@ -27,6 +47,7 @@ const register = document.querySelector('.register');
             document.getElementById("outputMessage").innerHTML = `Bravo ${response.username}, vous êtes désormais enregistré avec votre adresse ${response.email}`;
             document.getElementById("outputMessage").classList.add("alert-success");
             document.getElementById("outputMessage").classList.remove("visually-hidden");
+            document.location.href = "http://pokedex.test/user";
         }
         else {
             document.getElementById("outputMessage").innerHTML = response.message;

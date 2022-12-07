@@ -1,3 +1,23 @@
+// redirection
+
+
+async function login_controller() {
+    await fetch('/user/is_logged')
+    .then((result => {
+        return result.text();
+    }))
+    .then((response => {
+        response = JSON.parse(response);
+        if(response.connected == 0) {
+            document.location.href = "http://pokedex.test/user";
+        }
+    }))
+}
+
+login_controller();
+
+
+
 const pokemonsContainer = document.querySelector('.pokemons');
 
 const formInput = document.querySelector('#search');
@@ -84,4 +104,25 @@ formInput.addEventListener('keyup', function(e) {
         }
     })
     
+})
+
+
+// logout
+
+const logout = document.querySelector('.logout');
+
+
+logout.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    await fetch('/user/logout')
+    .then((result => {
+        return result.text();
+    }))
+    .then((response => {
+        response = JSON.parse(response);
+        if(response.connected == 0) {
+            document.location.href = "http://pokedex.test/user";
+        }
+    }))
 })

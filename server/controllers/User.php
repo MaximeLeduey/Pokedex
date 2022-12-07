@@ -1,5 +1,6 @@
 <?php
 
+
 class User extends Controller {
 
     /** fonction qui redirige vers la page login
@@ -167,6 +168,7 @@ class User extends Controller {
             if($this->verify_password()) {
                 $data['success'] = 1;
                 $data['username'] = $_POST['username'];
+                $_SESSION['connected'] = 1;
             }
             else {
                 $data['message'] = "Mot de passe incorrect";
@@ -178,18 +180,6 @@ class User extends Controller {
         echo json_encode($data);
     }
 
-    /** fonction qui regarde si l'utilisateur est connecté
-     * 
-     */
-
-    public function is_logged() {
-        if(isset($_SESSION['connected'])) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     /** fonction qui nous deconnecte
      * 
@@ -198,7 +188,25 @@ class User extends Controller {
     public function logout() {
         unset($_SESSION['connected']);
         session_destroy();
-        header('Location:/user');
+        $data = [];
+        $data['connected'] = 0;
+        echo json_encode($data);
+    }
+
+
+    /** fonction qui teste si on est connectés
+     * 
+     */
+
+    public function is_logged() {
+        $data = [];
+        if(!isset($_SESSION['connected'])) {
+            $data['connected'] = 0;
+        }
+        else {
+            $data['connected'] = 1;
+        }
+        echo json_encode($data);
     }
 
 
